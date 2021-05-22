@@ -22,23 +22,48 @@ namespace GTL.Controllers
 
 
         [HttpGet]
-        [Route("data/expose")]
-        public IActionResult GetAllDataExposed()
+        [Route("data/expose/books")]
+        public IActionResult GetAllDataExposedForBooks()
         {
             string query = "Select * from Book";
             var Books = QueryExecution(query);
 
-            query = "Select * from Members";
+            return Ok(Books);
+        }
+
+        [HttpGet]
+        [Route("data/expose/members")]
+        [Route("data/expose/members/{active}")]
+        [Route("data/expose/members/{active}/{hascard}")]
+        public IActionResult GetAllDataExposedForMembers(int active = 0, int hascard = 0)
+        {
+            string query = "Select * from Members ";
+            if(active > 0 ) {
+                query += "Where ActiveMember = 1 ";
+            }
+            if(hascard > 0 && active > 0 ) {
+                query += "AND CardID IS NOT NULL";
+            }else if (hascard > 0 && active == 0 ) {
+                query += "Where CardID IS NOT NULL";
+            }
             var Members = QueryExecution(query);
 
-            query = "SELECT Distinct ISBN, count(ID) as \"Number of instances\" from AcquireList Group By ISBN";
+            return Ok(Members);
+        }
+
+        [HttpGet]
+        [Route("data/expose/list")]
+        public IActionResult GetAllDataExposedAcquireList()
+        {
+            string query = "SELECT Distinct ISBN, count(ID) as \"Number of instances\" from AcquireList Group By ISBN";
             var ToAcquire = QueryExecution(query);
 
-            return Ok(new{members = Members, books = Books, Acquire_List = ToAcquire});
+            return Ok(ToAcquire);
         }
 
         [HttpGet]
         [Route("book/{limit}")]
+        [Route("book")]
         public IActionResult GetBooksByLimit(int limit = 50)
         {
             string query = "Select TOP(" + limit + ") * from Book";
