@@ -26,5 +26,41 @@ namespace GTL.Tests
             List<Dictionary<string, object>> result = sut.GetAllDataExposedForBooks();
             Assert.Equal(10000, result.Count);
         }
+
+        [Fact]
+        public void GetAllUsersTest()
+        {
+            var sut = new LibraryController();
+
+            List<Dictionary<string, object>> result = sut.GetAllDataExposedForMembers();
+            Assert.Equal(9000, result.Count);
+        }
+
+        [Fact]
+        public void GetAllActiveUsersTest()
+        {
+            var sut = new LibraryController();
+
+            List<Dictionary<string, object>> result = sut.GetAllDataExposedForMembers(1,0);
+            Assert.Equal(4568, result.Count);
+        }
+
+        [Fact]
+        public void GetAllActiveWithCardUsersTest()
+        {
+            var sut = new LibraryController();
+
+            List<Dictionary<string, object>> result = sut.GetAllDataExposedForMembers(1,1);
+            Assert.Equal(3434, result.Count);
+        }
+
+        [Fact]
+        public void GetAllWithCardUsersTest()
+        {
+            var sut = new LibraryController();
+
+            List<Dictionary<string, object>> result = sut.GetAllDataExposedForMembers(0,1);
+            Assert.Equal(6798, result.Count);
+        }
     }
 }
