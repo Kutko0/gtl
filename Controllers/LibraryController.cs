@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace GTL.Controllers
 {
@@ -23,19 +24,19 @@ namespace GTL.Controllers
 
         [HttpGet]
         [Route("data/expose/books")]
-        public IActionResult GetAllDataExposedForBooks()
+        public List<Dictionary<string, object>> GetAllDataExposedForBooks()
         {
             string query = "Select * from Book";
             var Books = QueryExecution(query);
 
-            return Ok(Books);
+            return Books;
         }
 
         [HttpGet]
         [Route("data/expose/members")]
         [Route("data/expose/members/{active}")]
         [Route("data/expose/members/{active}/{hascard}")]
-        public IActionResult GetAllDataExposedForMembers(int active = 0, int hascard = 0)
+        public List<Dictionary<string, object>> GetAllDataExposedForMembers(int active = 0, int hascard = 0)
         {
             string query = "Select * from Members ";
             if(active > 0 ) {
@@ -48,55 +49,55 @@ namespace GTL.Controllers
             }
             var Members = QueryExecution(query);
 
-            return Ok(Members);
+            return Members;
         }
 
         [HttpGet]
         [Route("data/expose/list")]
-        public IActionResult GetAllDataExposedAcquireList()
+        public List<Dictionary<string, object>> GetAllDataExposedAcquireList()
         {
             string query = "SELECT Distinct ISBN, count(ID) as \"Number of instances\" from AcquireList Group By ISBN";
             var ToAcquire = QueryExecution(query);
 
-            return Ok(ToAcquire);
+            return ToAcquire;
         }
 
         [HttpGet]
         [Route("book/{limit}")]
         [Route("book")]
-        public IActionResult GetBooksByLimit(int limit = 50)
+        public List<Dictionary<string, object>> GetBooksByLimit(int limit = 50)
         {
             string query = "Select TOP(" + limit + ") * from Book";
-            return Ok(QueryExecution(query));
+            return QueryExecution(query);
         }
 
         [HttpGet]
         [Route("procedure/booksinfo")]
-        public IActionResult GetBooksInfo()
+        public List<Dictionary<string, object>> GetBooksInfo()
         {
             string query = "EXEC SelectBooksWithInfo;";
-            return Ok(QueryExecution(query));
+            return QueryExecution(query);
         }
 
         [HttpGet]
         [Route("procedure/membersinfo")]
-        public IActionResult GetMembersInfo()
+        public List<Dictionary<string, object>> GetMembersInfo()
         {
             string query = "EXEC SelectMembersWithInfo;";
-            return Ok(QueryExecution(query));
+            return QueryExecution(query);
         }
 
         [HttpGet]
         [Route("procedure/finishedorders")]
-        public IActionResult GetFinishedOrderLastYear()
+        public List<Dictionary<string, object>> GetFinishedOrderLastYear()
         {
             string query = "EXEC SelectFinishedOrdersInfoForPastYear;";
-            return Ok(QueryExecution(query));
+            return QueryExecution(query);
         }
 
         [HttpGet]
         [Route("topauthorsyear")]
-        public IActionResult GetTopAuthors()
+        public List<Dictionary<string, object>> GetTopAuthors()
         {
             string query = @"Select TOP (3) DTB.FullName, count(DTB.ISBN) as BooksLoaned from
                                 (Select ID, concat(Fname,' ', Lname) as FullName, DT.ISBN From AuthorName
@@ -111,12 +112,12 @@ namespace GTL.Controllers
                                 ) DTB
                             Group by DTB.FullName
                             Order by BooksLoaned desc";
-            return Ok(QueryExecution(query));
+            return QueryExecution(query);
         }
 
         [HttpGet]
         [Route("averagecampus")]
-        public IActionResult GetAverageBooksPerYearOnCampus()
+        public List<Dictionary<string, object>> GetAverageBooksPerYearOnCampus()
         {
             string query = @"Select TOP(10)  DT.AddressLine1,(Count(DT.CampusAddress)) / (Count(DISTINCT DT.CampusAddress)) as AveragePerCampus from 
                             (
@@ -129,44 +130,44 @@ namespace GTL.Controllers
                             ) DT
                             Group by DT.AddressLine1
                             Order by AveragePerCampus desc";
-            return Ok(QueryExecution(query));
+            return QueryExecution(query);
         }
 
 
         [HttpGet]
         [Route("lastquarterloaned")]
-        public IActionResult GetInfoAboutLastQuarterOfLoanedBooks()
+        public List<Dictionary<string, object>> GetInfoAboutLastQuarterOfLoanedBooks()
         {
             string query = @"SELECT Datename(QUARTER, DATEADD(month, -3, getdate())) as Quarter,
                                 Count(Loan.ID) as NumberOfBooksPerMonth, 
                                 Count(Distinct Loan.CardID) as PeopleLoaned, 
                                 Count(Distinct Loan.ISBN) DifferentBooks from Loan
                                 Where LoanDate >= DATEADD(QUARTER, -1, getdate())";
-            return Ok(QueryExecution(query));
+            return QueryExecution(query);
         }
 
 
         [HttpGet]
         [Route("pendingorders")]
-        public IActionResult GetPendingOrdersByDateAsc()
+        public List<Dictionary<string, object>> GetPendingOrdersByDateAsc()
         {
             string query = @"Select ISBN, CardID, RequiredDate from Orders
                                 Where LoanID IS NULL 
                                 AND RequiredDate IS NOT NULL
                                 Order by RequiredDate ASC";
-            return Ok(QueryExecution(query));
+            return QueryExecution(query);
         }
 
 
         [HttpGet]
         [Route("book/tobeordered")]
-        public IActionResult GetAmountOfToBeOrderedBooks()
+        public List<Dictionary<string, object>> GetAmountOfToBeOrderedBooks()
         {
             string query = @"SELECT ISBN, Count(AcquireList.Resolved) as UnresolvedStock from AcquireList
                                 where Resolved=0
                                 group by ISBN
                                 order by UnresolvedStock desc";
-            return Ok(QueryExecution(query));
+            return QueryExecution(query);
         }
 
         [HttpPost]
@@ -226,9 +227,11 @@ namespace GTL.Controllers
         }
 
         // HELPER FUNCTIONS
-        private string QueryExecution(string query)
+        // BELOW
+
+        private List<Dictionary<string, object>> QueryExecution(string query)
         {
-            string json;
+            IEnumerable<Dictionary<string, object>> data;
 
             using (this._conn)
             {
@@ -236,14 +239,14 @@ namespace GTL.Controllers
                 this._conn.Open();
                 using (SqlDataReader oReader = oCmd.ExecuteReader())
                 {
-                    var data = Serialize(oReader);
-                    json = JsonConvert.SerializeObject(data, Formatting.Indented);
+                    data = Serialize(oReader);
+                    //json = JsonConvert.SerializeObject(data, Formatting.Indented);
 
                     this._conn.Close();
                 }
             }
 
-            return json;
+            return data.ToList();
         }
 
         public IEnumerable<Dictionary<string, object>> Serialize(SqlDataReader reader)

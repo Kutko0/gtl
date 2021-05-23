@@ -1,0 +1,5 @@
+c:\Users\AndrejKutliak\Desktop\TopUp\Project\API\GTL\GTL.Tests\obj\Debug\net5.0\GTL.Tests.csprojAssemblyReference.cache
+c:\Users\AndrejKutliak\Desktop\TopUp\Project\API\GTL\GTL.Tests\obj\Debug\net5.0\GTL.Tests.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\AndrejKutliak\Desktop\TopUp\Project\API\GTL\GTL.Tests\obj\Debug\net5.0\GTL.Tests.AssemblyInfoInputs.cache
+c:\Users\AndrejKutliak\Desktop\TopUp\Project\API\GTL\GTL.Tests\obj\Debug\net5.0\GTL.Tests.AssemblyInfo.cs
+c:\Users\AndrejKutliak\Desktop\TopUp\Project\API\GTL\GTL.Tests\obj\Debug\net5.0\GTL.Tests.csproj.CoreCompileInputs.cache
