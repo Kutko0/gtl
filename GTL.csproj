@@ -1,0 +1,89 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="obj\Debug\net5.0\.NETCoreApp,Version=v5.0.AssemblyAttributes.cs" />
+    <Compile Include="obj\Debug\net5.0\GTL.AssemblyInfo.cs" />
+    <Compile Include="obj\Debug\net5.0\GTL.MvcApplicationPartsAssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="bin\Debug\net5.0\appsettings.Development.json" />
+    <Content Include="bin\Debug\net5.0\appsettings.json" />
+    <Content Include="bin\Debug\net5.0\GTL.deps.json" />
+    <Content Include="bin\Debug\net5.0\GTL.runtimeconfig.dev.json" />
+    <Content Include="bin\Debug\net5.0\GTL.runtimeconfig.json" />
+    <Content Include="bin\Debug\net5.0\GTL.Tests\obj\GTL.Tests.csproj.nuget.dgspec.json" />
+    <Content Include="bin\Debug\net5.0\GTL.Tests\obj\project.assets.json" />
+    <Content Include="obj\Debug\net5.0\GTL.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\net5.0\project.razor.json" />
+    <Content Include="obj\Debug\net5.0\staticwebassets\GTL.StaticWebAssets.xml" />
+    <Content Include="obj\GTL.csproj.nuget.dgspec.json" />
+    <Content Include="obj\project.assets.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\net5.0\AngleSharp.dll" />
+    <None Include="bin\Debug\net5.0\Castle.Core.dll" />
+    <None Include="bin\Debug\net5.0\GTL.dll" />
+    <None Include="bin\Debug\net5.0\GTL.exe" />
+    <None Include="bin\Debug\net5.0\GTL.pdb" />
+    <None Include="bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.Testing.dll" />
+    <None Include="bin\Debug\net5.0\Microsoft.AspNetCore.TestHost.dll" />
+    <None Include="bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll" />
+    <None Include="bin\Debug\net5.0\Microsoft.OpenApi.dll" />
+    <None Include="bin\Debug\net5.0\Moq.dll" />
+    <None Include="bin\Debug\net5.0\Newtonsoft.Json.dll" />
+    <None Include="bin\Debug\net5.0\ref\GTL.dll" />
+    <None Include="bin\Debug\net5.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll" />
+    <None Include="bin\Debug\net5.0\runtimes\win-arm64\native\sni.dll" />
+    <None Include="bin\Debug\net5.0\runtimes\win-x64\native\sni.dll" />
+    <None Include="bin\Debug\net5.0\runtimes\win-x86\native\sni.dll" />
+    <None Include="bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll" />
+    <None Include="bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll" />
+    <None Include="bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll" />
+    <None Include="bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll" />
+    <None Include="bin\Debug\net5.0\System.Data.SqlClient.dll" />
+    <None Include="bin\Debug\net5.0\System.IO.Pipelines.dll" />
+    <None Include="bin\Debug\net5.0\xunit.abstractions.dll" />
+    <None Include="bin\Debug\net5.0\xunit.assert.dll" />
+    <None Include="bin\Debug\net5.0\xunit.core.dll" />
+    <None Include="bin\Debug\net5.0\xunit.execution.dotnet.dll" />
+    <None Include="GTL.Tests\GTL.Tests.csproj" />
+    <None Include="obj\Debug\net5.0\apphost.exe" />
+    <None Include="obj\Debug\net5.0\GTL.AssemblyInfoInputs.cache" />
+    <None Include="obj\Debug\net5.0\GTL.assets.cache" />
+    <None Include="obj\Debug\net5.0\GTL.csproj.CopyComplete" />
+    <None Include="obj\Debug\net5.0\GTL.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\net5.0\GTL.csprojAssemblyReference.cache" />
+    <None Include="obj\Debug\net5.0\GTL.dll" />
+    <None Include="obj\Debug\net5.0\GTL.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Include="obj\Debug\net5.0\GTL.genruntimeconfig.cache" />
+    <None Include="obj\Debug\net5.0\GTL.MvcApplicationPartsAssemblyInfo.cache" />
+    <None Include="obj\Debug\net5.0\GTL.pdb" />
+    <None Include="obj\Debug\net5.0\GTL.RazorTargetAssemblyInfo.cache" />
+    <None Include="obj\Debug\net5.0\ref\GTL.dll" />
+    <None Include="obj\Debug\net5.0\staticwebassets\GTL.StaticWebAssets.Manifest.cache" />
+    <None Include="obj\GTL.csproj.nuget.g.props" />
+    <None Include="obj\GTL.csproj.nuget.g.targets" />
+    <None Include="obj\project.nuget.cache" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AngleSharp" Version="0.15.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="5.0.6" />
+    <PackageReference Include="Moq" Version="4.16.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="GTL.Tests\bin\Debug\net5.0\ref\" />
+  </ItemGroup>
+
+</Project>
