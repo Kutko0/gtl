@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\AndrejKutliak\\Desktop\\TopUp\\Project\\API\\GTL\\GTL.csproj": {}
+    "/home/andrej/Desktop/gtl/GTL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\AndrejKutliak\\Desktop\\TopUp\\Project\\API\\GTL\\GTL.csproj": {
+    "/home/andrej/Desktop/gtl/GTL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\AndrejKutliak\\Desktop\\TopUp\\Project\\API\\GTL\\GTL.csproj",
+        "projectUniqueName": "/home/andrej/Desktop/gtl/GTL.csproj",
         "projectName": "GTL",
-        "projectPath": "C:\\Users\\AndrejKutliak\\Desktop\\TopUp\\Project\\API\\GTL\\GTL.csproj",
-        "packagesPath": "C:\\Users\\AndrejKutliak\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\AndrejKutliak\\Desktop\\TopUp\\Project\\API\\GTL\\obj\\",
+        "projectPath": "/home/andrej/Desktop/gtl/GTL.csproj",
+        "packagesPath": "/home/andrej/.nuget/packages/",
+        "outputPath": "/home/andrej/Desktop/gtl/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\AndrejKutliak\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/andrej/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -40,6 +38,18 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "AngleSharp": {
+              "target": "Package",
+              "version": "[0.15.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Testing": {
+              "target": "Package",
+              "version": "[5.0.6, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.16.1, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.1, )"
@@ -51,6 +61,10 @@
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.8.2, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.1, )"
             }
           },
           "imports": [
@@ -71,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.302/RuntimeIdentifierGraph.json"
         }
       }
     }

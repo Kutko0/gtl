@@ -16,11 +16,7 @@ namespace GTL.Controllers
     [Route("api/[controller]")]
     public class LibraryController : ControllerBase
     {
-        private static string _connString = "Server=DESKTOP-GKCGP3R\\MSSQLSERVER01;Database=GTLDB;User ID=dbo;Integrated Security=true";
-        private SqlConnection _conn = new SqlConnection(_connString);
-        // Singelton didn't work, probably wrong approach
-        // private SqlConnection _conn = ConnInstance.Instance;
-
+        private SqlConnection _conn = ConnInstance.Instance;
 
         [HttpGet]
         [Route("data/expose/books")]
